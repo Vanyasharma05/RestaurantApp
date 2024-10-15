@@ -35,7 +35,7 @@ FROM deps as package
 
 WORKDIR /build
 
-COPY ./D src/
+COPY ./src/ src/
 RUN --mount=type=bind,source=pom.xml,target=pom.xml \
     --mount=type=cache,target=/root/.m2 \
     ./mvnw package -DskipTests && \
@@ -89,4 +89,4 @@ COPY --from=extract build/target/extracted/application/ ./
 
 EXPOSE 3000
 
-ENTRYPOINT [ "java", "org.springframework.boot.loader.JarLauncher" ]
+ENTRYPOINT [ "java", "restaurantapp" ]
